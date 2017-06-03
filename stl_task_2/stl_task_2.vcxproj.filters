@@ -51,9 +51,6 @@
     <ClInclude Include="help_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TemplateContainer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Command.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
@@ -126,9 +123,6 @@
     <ClInclude Include="SetYearCommand.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="decimal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SetDayCommand.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
@@ -156,9 +150,6 @@
     <ClInclude Include="SelectCommand.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="ContainerUtils.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="RuntimeInfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -168,11 +159,20 @@
     <ClInclude Include="ExitItemMenuCommand.h">
       <Filter>Header Files\Commands</Filter>
     </ClInclude>
-    <ClInclude Include="SetUserStatusCommand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SetManagerStatusCommand.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="SetUserStatusCommand.h">
+      <Filter>Header Files\Commands</Filter>
+    </ClInclude>
+    <ClInclude Include="TemplateContainer.h">
+      <Filter>Header Files\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="ContainerUtils.h">
+      <Filter>Header Files\Structure</Filter>
+    </ClInclude>
+    <ClInclude Include="decimal.h">
+      <Filter>Header Files\Structure</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -257,11 +257,11 @@
     <ClCompile Include="RuntimeInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SetUserStatusCommand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SetManagerStatusCommand.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Commands</Filter>
+    </ClCompile>
+    <ClCompile Include="SetUserStatusCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

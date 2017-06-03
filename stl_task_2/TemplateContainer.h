@@ -139,6 +139,17 @@ public:
 		return elements[index - 1];
 	}
 
+	TemplateContainer<T> operator+(TemplateContainer<T> cont2) {
+		TemplateContainer<T>* result = new TemplateContainer<T>();
+		for (std::vector<T>::iterator it = elements.begin(); it != elements.end(); ++it) {
+			result->Add(*it);
+		}
+		for (std::vector<T>::iterator it = cont2.elements.begin(); it != cont2.elements.end(); ++it) {
+			result->Add(*it);
+		}
+		return *result;
+	}
+
 	//сортировка по критерию
 	void SortElemsBy(std::function<bool(T, T)> comp) {
 		std::sort(elements.begin(), elements.end(), comp);

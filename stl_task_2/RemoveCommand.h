@@ -3,6 +3,7 @@
 #include "TemplateContainer.h"
 #include "stdafx.h"
 #include "ContainerUtils.h"
+#include "RuntimeInfo.h"
 
 class RemoveCommand : public Command
 {
@@ -23,6 +24,8 @@ public:
         if (num != 0) {
             cont->Erase(num);
         }
+		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+		runtime_info->synchronizeContainers();
     }
 
     ~RemoveCommand()

@@ -24,6 +24,8 @@ void SetApartmentNumberCommand::Execute()
 			else {
 				bill.setApartmentNumber("");
 			}
+			RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+			runtime_info->synchronizeContainers();
 			isCorrect = true;
 		}
 		catch (std::exception e) {

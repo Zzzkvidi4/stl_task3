@@ -20,6 +20,7 @@ public:
         std::getline(std::cin, file_name);
         if (file_name != "") {
             cont->clear();
+			runtime_info->setFileName(file_name);
             try {
 				std::ifstream fin(file_name);
                 if (!ContainerUtils<Bill>::read_from_file(fin, *cont)) {

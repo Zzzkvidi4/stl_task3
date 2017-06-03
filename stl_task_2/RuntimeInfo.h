@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include "TemplateContainer.h"
+#include "ContainerUtils.h"
 
 #define NO_CONTAINER 0
 #define CONTAINER_EXISTS 1
@@ -55,6 +56,11 @@ public:
 		}
 		return instance;
 	};
+
+	void synchronizeContainers() {
+		std::ofstream fout(filename);
+		ContainerUtils<Bill>::print_to_file(fout, *main_container + *sub_container);
+	}
 
 	void setFileName(std::string filename) {
 		this->filename = filename;

@@ -1,6 +1,7 @@
 #pragma once
 #include "Command.h"
 #include "TemplateContainer.h"
+#include "RuntimeInfo.h"
 
 class AddBillCommand: public Command
 {
@@ -208,6 +209,8 @@ public:
             }
         }
         cont->Add(bill);
+		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+		runtime_info->synchronizeContainers();
     }
 
     ~AddBillCommand()

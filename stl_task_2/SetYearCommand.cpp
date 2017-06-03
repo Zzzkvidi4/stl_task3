@@ -18,6 +18,8 @@ void SetYearCommand::Execute() {
 		}
 		try {
 			bill.getDate().setYear(str);
+			RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+			runtime_info->synchronizeContainers();
 			isCorrect = true;
 		}
 		catch (std::exception e) {

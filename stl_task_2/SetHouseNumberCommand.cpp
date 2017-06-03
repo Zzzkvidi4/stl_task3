@@ -19,6 +19,8 @@ void SetHouseNumberCommand::Execute()
 		}
 		try {
 			bill.setHouseNumber(str);
+			RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+			runtime_info->synchronizeContainers();
 			isCorrect = true;
 		}
 		catch (std::exception e) {
