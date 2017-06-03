@@ -42,6 +42,9 @@ void CommandList::PrintTitles(std::string header)
 
 void CommandList::Clear()
 {
+	for (auto i = 0; i < commands.size(); ++i) {
+		delete commands[i];
+	}
     commands.clear();
 }
 
