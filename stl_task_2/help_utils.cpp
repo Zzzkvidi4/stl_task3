@@ -6,7 +6,9 @@
 void print_message(std::string msg)
 {
     std::cout << msg << std::endl;
-    system("pause");
+	std::cout << "Нажмите Enter для продолжения..." << std::endl;
+	std::string str;
+	std::getline(std::cin, str);
 }
 
 //функция получения одного из вариантов между min и max

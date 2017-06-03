@@ -20,7 +20,9 @@ public:
             print_message("Список счетов пуст!");
         } else {
 			ContainerUtils<Bill>::print_to_console(std::cout, *cont);
-            system("pause");
+			std::cout << "Для продолжения нажмите Enter..." << std::endl;
+			std::string str;
+			std::getline(std::cin, str);
         }
     }
 
