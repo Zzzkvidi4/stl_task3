@@ -15,6 +15,7 @@ void EditRecordCommand::Execute()
 		return;
 	}
 	RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+	runtime_info->setItemPosition(choice);
 	runtime_info->setConcreteElement(&(*cont)[choice]);
 }
 

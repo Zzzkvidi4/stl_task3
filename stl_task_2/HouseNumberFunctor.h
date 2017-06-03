@@ -7,6 +7,7 @@ public:
     HouseNumberFunctor();
     bool operator()(Bill bill);
     void Initialize();
+	std::string GetStringValue();
     Bill GetValue();
     ~HouseNumberFunctor();
 };

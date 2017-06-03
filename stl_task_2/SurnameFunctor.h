@@ -10,6 +10,7 @@ public:
     SurnameFunctor();
     bool operator()(Bill bill);
     void Initialize();
+	std::string GetStringValue();
     Bill GetValue();
     ~SurnameFunctor();
 };

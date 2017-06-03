@@ -66,6 +66,10 @@ void DateFunctor::Initialize()
     isInitialized = true;
 }
 
+std::string DateFunctor::GetStringValue() {
+	return date.to_string();
+}
+
 Bill DateFunctor::GetValue()
 {
     Bill* bill = new Bill();

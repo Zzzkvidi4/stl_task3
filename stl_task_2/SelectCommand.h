@@ -24,6 +24,7 @@ public:
     }
 
     void Execute() {
+		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
         SearchFunctorFactory<Bill> factory = SearchFunctorFactory<Bill>();
         factory.Add<SurnameFunctor>("surname");
         factory.Add<DateFunctor>("date");
@@ -31,6 +32,7 @@ public:
         factory.Add<ApartmentNumberFunctor>("apartment");
         factory.Add<HavePeniFunctor>("peni");
         std::string type = SelectType();
+		runtime_info->setFactoryName(type);
         if (type == "") {
             return;
         }
@@ -52,7 +54,6 @@ public:
                 return;
             }
         }
-		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
 		runtime_info->setSubContainer(result);
     }
 

@@ -22,29 +22,10 @@ private:
 	TemplateContainer<Bill>* main_container = new TemplateContainer<Bill>();
 	TemplateContainer<Bill>* sub_container = new TemplateContainer<Bill>();
 	Bill* concrete_element = new Bill;
-	std::string filename = "";
-
-	void removeMainContainer() {
-		main_container->clear();
-		container_status = NO_CONTAINER;
-	}
-
-	void removeSubContainer() {
-		if (sub_container->size() != 0) {
-			main_container->PushBack(sub_container);
-			sub_container->clear();
-		}
-		container_status = CONTAINER_EXISTS;
-	}
-
-	void removeConcreteElement() {
-		concrete_element = NULL;
-		if (sub_container->size() != 0) {
-			container_status = SUBCONTAINER_EXISTS;
-		} else if (main_container->size() != 0) {
-			container_status = CONTAINER_EXISTS;
-		}
-	}
+	std::string file_name = "";
+	std::string factory_name = "";
+	std::string query_value = "";
+	int item_position = -1;
 
 
 public:
@@ -58,16 +39,40 @@ public:
 	};
 
 	void synchronizeContainers() {
-		std::ofstream fout(filename);
+		std::ofstream fout(file_name);
 		ContainerUtils<Bill>::print_to_file(fout, *main_container + *sub_container);
 	}
 
 	void setFileName(std::string filename) {
-		this->filename = filename;
+		this->file_name = filename;
 	}
 
 	std::string getFileName() {
-		return filename;
+		return file_name;
+	}
+
+	void setFactoryName(std::string factory_name) {
+		this->factory_name = factory_name;
+	}
+
+	std::string getFactoryName() {
+		return factory_name;
+	}
+
+	void setQueryValue(std::string query_value) {
+		this->query_value = query_value;
+	}
+
+	std::string getQueryValeu() {
+		return query_value;
+	}
+
+	void setItemPosition(int item_position) {
+		this->item_position = item_position;
+	}
+
+	int getItemPosition() {
+		return item_position;
 	}
 
 	TemplateContainer<Bill>* getMainContainer() {
@@ -101,6 +106,28 @@ public:
 	void setConcreteElement(Bill* element) {
 		concrete_element = element;
 		container_status = CONCRETE_ELEMENT_EXISTS;
+	}
+
+	void removeMainContainer() {
+		main_container->clear();
+		container_status = NO_CONTAINER;
+	}
+
+	void removeSubContainer() {
+		if (sub_container->size() != 0) {
+			main_container->PushBack(sub_container);
+			sub_container->clear();
+		}
+		container_status = CONTAINER_EXISTS;
+	}
+
+	void removeConcreteElement() {
+		concrete_element = NULL;
+		if (sub_container->size() != 0) {
+			container_status = SUBCONTAINER_EXISTS;
+		} else if (main_container->size() != 0) {
+			container_status = CONTAINER_EXISTS;
+		}
 	}
 
 	void removeLastItem() {

@@ -31,6 +31,10 @@ void SurnameFunctor::Initialize()
     }
 }
 
+std::string SurnameFunctor::GetStringValue() {
+	return surname;
+}
+
 Bill SurnameFunctor::GetValue()
 {
     if (surname == "") {

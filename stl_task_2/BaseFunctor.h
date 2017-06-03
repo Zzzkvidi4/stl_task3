@@ -12,6 +12,7 @@ public:
     virtual bool operator()(T bill) = 0;
     virtual T GetValue() { return *(new T()); }
     virtual void Initialize() = 0;
+	virtual std::string GetStringValue() = 0;
     virtual std::function<bool(T, T)> GetComparator() { return comparator; };
     ~BaseFunctor() {};
 };

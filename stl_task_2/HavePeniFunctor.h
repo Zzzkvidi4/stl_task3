@@ -7,6 +7,7 @@ public:
     HavePeniFunctor();
     bool operator()(Bill bill);
     void Initialize();
+	std::string GetStringValue();
     Bill GetValue();
     ~HavePeniFunctor();
 };

@@ -43,6 +43,10 @@ void ApartmentNumberFunctor::Initialize()
     }
 }
 
+std::string ApartmentNumberFunctor::GetStringValue() {
+	return std::to_string(apartment_number);
+}
+
 Bill ApartmentNumberFunctor::GetValue()
 {
     if (apartment_number == -1) {

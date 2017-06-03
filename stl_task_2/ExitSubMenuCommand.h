@@ -10,7 +10,8 @@ public:
 
 	void Execute() {
 		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
-		runtime_info->removeLastItem();
+		runtime_info->setFactoryName("");
+		runtime_info->removeSubContainer();
 	}
 
 	~ExitSubMenuCommand() {}

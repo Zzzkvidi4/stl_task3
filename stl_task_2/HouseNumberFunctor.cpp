@@ -44,6 +44,10 @@ void HouseNumberFunctor::Initialize()
     }
 }
 
+std::string HouseNumberFunctor::GetStringValue() {
+	return std::to_string(house_number);
+}
+
 Bill HouseNumberFunctor::GetValue()
 {
     if (house_number == -1) {

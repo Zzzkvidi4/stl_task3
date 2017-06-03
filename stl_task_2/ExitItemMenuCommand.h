@@ -11,6 +11,7 @@ public:
 
 	void Execute() {
 		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+		runtime_info->setItemPosition(-1);
 		runtime_info->removeLastItem();
 	}
 
