@@ -42,8 +42,12 @@
 #include "SetPaymentTypeCommand.h"
 #include "SetPeniCommand.h"
 #include "SetDelayDaysNumberCommand.h"
+#include "SetUserStatusCommand.h"
+#include "SetManagerStatusCommand.h"
 #include "decimal.h"
 #include "ExitCommand.h"
+#include "ExitSubMenuCommand.h"
+#include "ExitItemMenuCommand.h"
 
 
 

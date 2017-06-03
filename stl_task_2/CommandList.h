@@ -12,7 +12,7 @@ public:
     void ExecuteCommand(int index);
     void PrintTitles(std::string header);
     void Clear();
-    int Size();
+    size_t Size();
     ~CommandList();
 };
 

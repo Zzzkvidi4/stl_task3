@@ -14,6 +14,7 @@ public:
     }
 
     void Execute() {
+		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
         std::cout << "Введите имя файла (пустая строка для отмены):" << std::endl;
         std::string file_name;
         std::getline(std::cin, file_name);

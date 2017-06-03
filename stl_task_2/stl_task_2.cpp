@@ -3,6 +3,7 @@
 
 #include "stdafx.h"
 #include <Windows.h>
+#include "RuntimeInfo.h"
 
 /*Результатом должна быть консольная программа с текстовым меню. Программа должна содержать шаблонный класс для управления данными согласно заданию. Для хранения данных необходимо выбрать оптимальный с точки зрения задания контейнер. 
 1. Предусмотреть операции добавления, изменения и удаления элемента контейнера. 
@@ -16,19 +17,75 @@
 Поиск по номеру дома, квартиры, владельцу, дате, наличии долга. 
 Вывод суммы долга в результатах поиска. */
 
-void FillMenu(TemplateContainer<Bill>* cont, CommandList* list) {
+void FillMainMenu(RuntimeInfo* runtime_info, TemplateContainer<Bill>* cont, CommandList* list) {
 	list->Clear();
 	list->RegisterCommand(new ExitCommand("Выход."));
 	list->RegisterCommand(new ReadFromFileCommand<Bill>("Заполнение из файла.", cont));
 	if (cont->size() != 0) {
-		list->RegisterCommand(new PrintToFileCommand<Bill>("Вывод в файл.", cont));
 		list->RegisterCommand(new PrintCommand<Bill>("Вывод в консоль.", cont));
-	}
-	list->RegisterCommand(new AddBillCommand("Добавление записи.", cont));
-	if (cont->size() != 0) {
-		list->RegisterCommand(new EditRecordCommand("Редактирование записи.", cont));
-		list->RegisterCommand(new RemoveCommand("Удаление записи.", cont));
+		if (runtime_info->getUserStatus() >= ROLE_MANAGER) {
+			list->RegisterCommand(new PrintToFileCommand<Bill>("Вывод в файл.", cont));
+			list->RegisterCommand(new AddBillCommand("Добавление записи.", cont));
+			list->RegisterCommand(new EditRecordCommand("Редактирование записи.", cont));
+			list->RegisterCommand(new RemoveCommand("Удаление записи.", cont));
+		}
 		list->RegisterCommand(new SelectCommand("Выборка записей.", cont));
+	}
+	if (runtime_info->getUserStatus() == ROLE_MANAGER) {
+		list->RegisterCommand(new SetUserStatusCommand("Режим пользователя."));
+	} else if (runtime_info->getUserStatus() == ROLE_USER) {
+		list->RegisterCommand(new SetManagerStatusCommand("Режим менеджера."));
+	}
+}
+
+void FillSubMenu(RuntimeInfo* runtime_info, TemplateContainer<Bill>* cont, CommandList* list) {
+	list->Clear();
+	list->RegisterCommand(new ExitSubMenuCommand("Назад."));
+	if (cont->size() != 0) {
+		list->RegisterCommand(new PrintCommand<Bill>("Вывести в консоль.", cont));
+		if (runtime_info->getUserStatus() >= ROLE_MANAGER) {
+			list->RegisterCommand(new PrintToFileCommand<Bill>("Сохранить в файл.", cont));
+			list->RegisterCommand(new RemoveCommand("Удалить запись.", cont));
+			list->RegisterCommand(new EditRecordCommand("Редактировать запись.", cont));
+		}
+	}
+}
+
+void FillItemMenu(RuntimeInfo* runtime_info, Bill* bill, CommandList* list) {
+	list->Clear();
+	list->RegisterCommand(new ExitItemMenuCommand("Назад."));
+	list->RegisterCommand(new SetStreetCommand("Улица.", *bill));
+	list->RegisterCommand(new SetHouseNumberCommand("Номер дома.", *bill));
+	list->RegisterCommand(new SetBlockNumberCommand("Номер строения.", *bill));
+	list->RegisterCommand(new SetApartmentNumberCommand("Номер квартиры.", *bill));
+	list->RegisterCommand(new SetSurnameCommand("Фамилия владельца.", *bill));
+	list->RegisterCommand(new SetYearCommand("Год платежа.", *bill));
+	list->RegisterCommand(new SetMonthCommand("Месяц платежа.", *bill));
+	list->RegisterCommand(new SetDayCommand("День платежа.", *bill));
+	list->RegisterCommand(new SetPaymentCommand("Сумма платежа.", *bill));
+	list->RegisterCommand(new SetPaymentTypeCommand("Тип платежа.", *bill));
+	list->RegisterCommand(new SetPeniCommand("Процент пени.", *bill));
+	list->RegisterCommand(new SetDelayDaysNumberCommand("Количество дней просрочки.", *bill));
+}
+
+void FillMenu(RuntimeInfo* runtime_info, CommandList* list) {
+	switch (runtime_info->getContainersStatus()) {
+		case CONTAINER_EXISTS: {
+			FillMainMenu(runtime_info, runtime_info->getMainContainer(), list);
+			break;
+		}
+		case SUBCONTAINER_EXISTS: {
+			FillSubMenu(runtime_info, runtime_info->getSubContainer(), list);
+			break;
+		}
+		case CONCRETE_ELEMENT_EXISTS: {
+			FillItemMenu(runtime_info, runtime_info->getConcreteElement(), list);
+			break;
+		}
+		case NO_CONTAINER: {
+			FillMainMenu(runtime_info, runtime_info->getMainContainer(), list);
+			break;
+		}
 	}
 }
 
@@ -38,13 +95,14 @@ int main()
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 	TemplateContainer<Bill>* cont = new TemplateContainer<Bill>();
-    CommandList* main_menu = new CommandList();
+    CommandList* menu = new CommandList();
+	RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
     int choice = -1;
-    while (choice != 0) {
-		FillMenu(cont, main_menu);
-        main_menu->PrintTitles("Выберите один из пунктов меню:");
-        getChoice(0, main_menu->Size(), choice);
-        main_menu->ExecuteCommand(choice);
+    while (runtime_info->getProgramStatus() != PROGRAM_EXIT) {
+		FillMenu(runtime_info, menu);
+        menu->PrintTitles("Выберите один из пунктов меню:");
+        getChoice(0, menu->Size(), choice);
+        menu->ExecuteCommand(choice);
     }
 	return 0;
 }

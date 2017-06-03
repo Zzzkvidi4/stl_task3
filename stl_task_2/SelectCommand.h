@@ -52,18 +52,8 @@ public:
                 return;
             }
         }
-
-        CommandList* sub_list = new CommandList();
-        choice = -1;
-        while (choice != 0) {
-			FillSubListMenu(sub_list, result);
-            sub_list->PrintTitles("Выберите один из пунктов меню для выборки:");
-            getChoice(0, sub_list->Size(), choice);
-            if (choice != 0) {
-                sub_list->ExecuteCommand(choice);
-            }
-        }
-		cont->PushBack(result);
+		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+		runtime_info->setSubContainer(result);
     }
 
     std::string SelectType() {
@@ -106,17 +96,6 @@ public:
         getChoice(0, 2, choice);
         return choice;
     }
-
-	void FillSubListMenu(CommandList* list, TemplateContainer<Bill>* cont) {
-		list->Clear();
-		list->RegisterCommand(new ExitCommand("Выход."));
-		if (cont->size() != 0) {
-			list->RegisterCommand(new PrintToFileCommand<Bill>("Сохранить в файл.", cont));
-			list->RegisterCommand(new PrintCommand<Bill>("Вывести в консоль.", cont));
-			list->RegisterCommand(new RemoveCommand("Удалить запись.", cont));
-			list->RegisterCommand(new EditRecordCommand("Редактировать запись.", cont));
-		}
-	}
 
     ~SelectCommand()
     {

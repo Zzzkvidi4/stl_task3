@@ -3,19 +3,17 @@
 #include "stdafx.h"
 #include "RuntimeInfo.h"
 
-class ExitCommand: public Command
-{
+class ExitItemMenuCommand :
+	public Command {
 public:
 
-	ExitCommand(std::string title): Command(title) {
-	}
+	ExitItemMenuCommand(std::string title): Command(title) {}
 
 	void Execute() {
 		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
-		runtime_info->setExitStatus();
+		runtime_info->removeLastItem();
 	}
 
-	~ExitCommand() {
-	}
+	~ExitItemMenuCommand() {}
 };
 

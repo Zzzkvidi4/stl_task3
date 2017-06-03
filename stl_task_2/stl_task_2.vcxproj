@@ -158,6 +158,8 @@
     <ClInclude Include="decimal.h" />
     <ClInclude Include="EditRecordCommand.h" />
     <ClInclude Include="ExitCommand.h" />
+    <ClInclude Include="ExitItemMenuCommand.h" />
+    <ClInclude Include="ExitSubMenuCommand.h" />
     <ClInclude Include="FunctorCreator.h" />
     <ClInclude Include="HavePeniFunctor.h" />
     <ClInclude Include="help_utils.h" />
@@ -174,12 +176,14 @@
     <ClInclude Include="SetDayCommand.h" />
     <ClInclude Include="SetDelayDaysNumberCommand.h" />
     <ClInclude Include="SetHouseNumberCommand.h" />
+    <ClInclude Include="SetManagerStatusCommand.h" />
     <ClInclude Include="SetMonthCommand.h" />
     <ClInclude Include="SetPaymentCommand.h" />
     <ClInclude Include="SetPaymentTypeCommand.h" />
     <ClInclude Include="SetPeniCommand.h" />
     <ClInclude Include="SetStreetCommand.h" />
     <ClInclude Include="SetSurnameCommand.h" />
+    <ClInclude Include="SetUserStatusCommand.h" />
     <ClInclude Include="SetYearCommand.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="SurnameFunctor.h" />
@@ -198,17 +202,20 @@
     <ClCompile Include="HavePeniFunctor.cpp" />
     <ClCompile Include="help_utils.cpp" />
     <ClCompile Include="HouseNumberFunctor.cpp" />
+    <ClCompile Include="RuntimeInfo.cpp" />
     <ClCompile Include="SetApartmentNumberCommand.cpp" />
     <ClCompile Include="SetBlockNumberCommand.cpp" />
     <ClCompile Include="SetDayCommand.cpp" />
     <ClCompile Include="SetDelayDaysNumberCommand.cpp" />
     <ClCompile Include="SetHouseNumberCommand.cpp" />
+    <ClCompile Include="SetManagerStatusCommand.cpp" />
     <ClCompile Include="SetMonthCommand.cpp" />
     <ClCompile Include="SetPaymentCommand.cpp" />
     <ClCompile Include="SetPaymentTypeCommand.cpp" />
     <ClCompile Include="SetPeniCommand.cpp" />
     <ClCompile Include="SetStreetCommand.cpp" />
     <ClCompile Include="SetSurnameCommand.cpp" />
+    <ClCompile Include="SetUserStatusCommand.cpp" />
     <ClCompile Include="SetYearCommand.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

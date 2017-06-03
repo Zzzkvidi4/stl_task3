@@ -45,7 +45,7 @@ void CommandList::Clear()
     commands.clear();
 }
 
-int CommandList::Size()
+size_t CommandList::Size()
 {
     return commands.size();
 }
