@@ -42,6 +42,11 @@ public:
 		return *this;
 	}
 
+	TemplateContainer<T>& AddToBeginning(T elem) {
+		elements.insert(elements.begin(), elem);
+		return *this;
+	}
+
 	//удаление по индексу
 	TemplateContainer<T>& Erase(int index) {
 		if (index > elements.size()) {
@@ -65,7 +70,7 @@ public:
 				result->Add(*it);
 			}
 			for (std::reverse_iterator<std::vector<T>::iterator> it = elements.rbegin() + elements.size() - 1 - start; (it != elements.rend()) && (func->operator()(*it)); ++it) {
-				result->Add(*it);
+				result->AddToBeginning(*it);
 			}
 		}
 		return result;

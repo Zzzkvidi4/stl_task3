@@ -38,6 +38,7 @@ public:
         }
         BaseFunctor<Bill>* func = factory.Create<Bill>(type);
         func->Initialize();
+		runtime_info->setQueryValue(func->GetStringValue());
         int choice = SelectAlgoritmType();
 
         TemplateContainer<Bill>* result = new TemplateContainer<Bill>();
