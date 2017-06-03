@@ -166,6 +166,7 @@
     <ClInclude Include="PrintToFileCommand.h" />
     <ClInclude Include="ReadFromFileCommand.h" />
     <ClInclude Include="RemoveCommand.h" />
+    <ClInclude Include="RuntimeInfo.h" />
     <ClInclude Include="SearchFunctorFactory.h" />
     <ClInclude Include="SelectCommand.h" />
     <ClInclude Include="SetApartmentNumberCommand.h" />
