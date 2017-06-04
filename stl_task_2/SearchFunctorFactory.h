@@ -24,6 +24,7 @@ public:
         if (iter != FactoryMap.end()) {
             return iter->second->Create();
         }
+		return NULL;
     }
 
 	~SearchFunctorFactory() {}

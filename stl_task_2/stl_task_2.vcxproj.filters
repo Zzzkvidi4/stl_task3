@@ -236,9 +236,6 @@
     <ClCompile Include="SetDayCommand.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
-    <ClCompile Include="SetMonthCommand.cpp">
-      <Filter>Source Files\Functors</Filter>
-    </ClCompile>
     <ClCompile Include="SetPaymentCommand.cpp">
       <Filter>Source Files\Commands</Filter>
     </ClCompile>
@@ -262,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="stl_task_3.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SetMonthCommand.cpp">
+      <Filter>Source Files\Commands</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

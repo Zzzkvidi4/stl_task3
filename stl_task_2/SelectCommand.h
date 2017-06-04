@@ -26,11 +26,7 @@ public:
     void Execute() {
 		RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
         SearchFunctorFactory<Bill> factory = SearchFunctorFactory<Bill>();
-        factory.Add<SurnameFunctor>("surname");
-        factory.Add<DateFunctor>("date");
-        factory.Add<HouseNumberFunctor>("house");
-        factory.Add<ApartmentNumberFunctor>("apartment");
-        factory.Add<HavePeniFunctor>("peni");
+		PrepareFactory(factory);
         std::string type = SelectType();
 		runtime_info->setFactoryName(type);
         if (type == "") {
@@ -58,6 +54,14 @@ public:
 		runtime_info->setSubContainer(result);
     }
 
+	static void PrepareFactory(SearchFunctorFactory<Bill>& factory) {
+		factory.Add<SurnameFunctor>("surname");
+		factory.Add<DateFunctor>("date");
+		factory.Add<HouseNumberFunctor>("house");
+		factory.Add<ApartmentNumberFunctor>("apartment");
+		factory.Add<HavePeniFunctor>("peni");
+	}
+
     std::string SelectType() {
         std::cout << "Выберите один из типов выборок:" << std::endl;
         std::cout << "1. По фамилии." << std::endl;
@@ -65,6 +69,7 @@ public:
         std::cout << "3. По номеру дома." << std::endl;
         std::cout << "4. По номеру квартиры." << std::endl;
         std::cout << "5. По наличию задолжности." << std::endl;
+		std::cout << "0. Назад." << std::endl;
         int choice = -1;
         getChoice(0, 5, choice);
         switch (choice) {

@@ -47,6 +47,23 @@ std::string ApartmentNumberFunctor::GetStringValue() {
 	return std::to_string(apartment_number);
 }
 
+bool ApartmentNumberFunctor::Initialize(std::string value) {
+	try {
+		if (!checkInt(value)) {
+			throw std::invalid_argument("");
+		}
+		apartment_number = std::stoi(value);
+		if (apartment_number < 0) {
+			apartment_number = -1;
+			throw new std::exception("Ќомер дома должен быть больше нул€ или равен ему!");
+		}
+		return true;
+	}
+	catch (std::exception e) {
+		return false;
+	}
+}
+
 Bill ApartmentNumberFunctor::GetValue()
 {
     if (apartment_number == -1) {

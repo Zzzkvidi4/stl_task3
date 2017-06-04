@@ -31,6 +31,10 @@ std::string HavePeniFunctor::GetStringValue() {
 	return std::to_string(hasPeni);
 }
 
+bool HavePeniFunctor::Initialize(std::string value) {
+	return false;
+}
+
 
 Bill HavePeniFunctor::GetValue()
 {

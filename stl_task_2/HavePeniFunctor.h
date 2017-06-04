@@ -8,6 +8,7 @@ public:
     bool operator()(Bill bill);
     void Initialize();
 	std::string GetStringValue();
+	bool Initialize(std::string value);
     Bill GetValue();
     ~HavePeniFunctor();
 };

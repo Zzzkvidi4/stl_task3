@@ -15,17 +15,18 @@
 class RuntimeInfo {
 private:
 	RuntimeInfo() {};
+	const std::string runtime_info_file_name = "runtime_info.dat";
 	static RuntimeInfo* instance;
 	int container_status = NO_CONTAINER;
-	int user_status = ROLE_USER;
+	int user_status = ROLE_USER;	//!
 	int program_status = PROGRAM_RUNNING;
 	TemplateContainer<Bill>* main_container = new TemplateContainer<Bill>();
 	TemplateContainer<Bill>* sub_container = new TemplateContainer<Bill>();
 	Bill* concrete_element = new Bill;
-	std::string file_name = "";
-	std::string factory_name = "";
-	std::string query_value = "";
-	int item_position = -1;
+	std::string file_name = ""; //!
+	std::string factory_name = ""; //!
+	std::string query_value = ""; //!
+	int item_position = -1; //!
 
 
 public:
@@ -45,6 +46,7 @@ public:
 
 	void setFileName(std::string filename) {
 		this->file_name = filename;
+		saveInfo();
 	}
 
 	std::string getFileName() {
@@ -53,6 +55,7 @@ public:
 
 	void setFactoryName(std::string factory_name) {
 		this->factory_name = factory_name;
+		saveInfo();
 	}
 
 	std::string getFactoryName() {
@@ -61,14 +64,16 @@ public:
 
 	void setQueryValue(std::string query_value) {
 		this->query_value = query_value;
+		saveInfo();
 	}
 
-	std::string getQueryValeu() {
+	std::string getQueryValue() {
 		return query_value;
 	}
 
 	void setItemPosition(int item_position) {
 		this->item_position = item_position;
+		saveInfo();
 	}
 
 	int getItemPosition() {
@@ -160,10 +165,12 @@ public:
 
 	void setManagerStatus() {
 		user_status = ROLE_MANAGER;
+		saveInfo();
 	}
 
 	void setUserStatus() {
 		user_status = ROLE_USER;
+		saveInfo();
 	}
 
 	int getProgramStatus() {
@@ -173,5 +180,13 @@ public:
 	void setExitStatus() {
 		program_status = PROGRAM_EXIT;
 	}
+
+	bool recoverInfo();
+
+	void saveInfo();
+
+	friend std::ostream& operator<<(std::ostream& out, RuntimeInfo& info);
+
+	friend std::istream& operator>>(std::istream& in, RuntimeInfo& info);
 };
 

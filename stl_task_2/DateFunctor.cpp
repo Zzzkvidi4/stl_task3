@@ -66,6 +66,16 @@ void DateFunctor::Initialize()
     isInitialized = true;
 }
 
+bool DateFunctor::Initialize(std::string value) {
+	try {
+		Date::StrToDate(value, date);
+		return true;
+	}
+	catch (std::exception e) {
+		return false;
+	}
+}
+
 std::string DateFunctor::GetStringValue() {
 	return date.to_string();
 }

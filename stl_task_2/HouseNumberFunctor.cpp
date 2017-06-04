@@ -22,7 +22,7 @@ void HouseNumberFunctor::Initialize()
         std::cout << "Введите номер дома (abort - отмена):" << std::endl;
         std::getline(std::cin, str);
         if (str == "abort") {
-            throw new std::exception("");
+            throw std::exception("");
         }
         try {
 			if (!checkInt(str)) {
@@ -31,7 +31,7 @@ void HouseNumberFunctor::Initialize()
             house_number = std::stoi(str);
             if (house_number <= 0) {
                 house_number = -1;
-                throw new std::exception("Номер дома должен быть больше нуля!");
+                throw std::exception("Номер дома должен быть больше нуля!");
             }
             isCorrect = true;
         }
@@ -48,10 +48,27 @@ std::string HouseNumberFunctor::GetStringValue() {
 	return std::to_string(house_number);
 }
 
+bool HouseNumberFunctor::Initialize(std::string value) {
+	try {
+		if (!checkInt(value)) {
+			throw std::invalid_argument("");
+		}
+		house_number = std::stoi(value);
+		if (house_number <= 0) {
+			house_number = -1;
+			throw std::exception("Номер дома должен быть больше нуля!");
+		}
+		return true;
+	}
+	catch (std::exception e) {
+		return false;
+	}
+}
+
 Bill HouseNumberFunctor::GetValue()
 {
     if (house_number == -1) {
-        throw new std::invalid_argument("Невозможно создать значение по неинициализированному функтору!");
+        throw std::invalid_argument("Невозможно создать значение по неинициализированному функтору!");
     }
     Bill* bill = new Bill();
     bill->setHouseNumber(house_number);
