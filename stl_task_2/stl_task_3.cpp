@@ -114,6 +114,9 @@ int main()
     while (runtime_info->getProgramStatus() != PROGRAM_EXIT) {
 		FillMenu(runtime_info, menu);
 		runtime_info->setCommandPosition(-1);
+		if (runtime_info->getContainersStatus() == CONCRETE_ELEMENT_EXISTS) {
+			std::cout << *(runtime_info->getConcreteElement()) << std::endl;
+		}
         menu->PrintTitles("Выберите один из пунктов меню:");
         getChoice(0, menu->Size(), choice);
 		if (choice != 0) {
