@@ -55,6 +55,7 @@ std::istream& operator>>(std::istream& in, RuntimeInfo& info) {
 
 void RuntimeInfo::setCommandPosition(int command_position) {
 	this->command_position = command_position;
+	saveInfo();
 }
 
 int RuntimeInfo::getCommandPosition() {
@@ -81,6 +82,8 @@ bool RuntimeInfo::recoverInfo() {
 			sub_container = main_container->GetElemsIf(functor);
 			container_status = SUBCONTAINER_EXISTS;
 		} else {
+			factory_name = "";
+			query_value = "";
 			recover_succeed = false;
 		}
 	}
@@ -90,18 +93,22 @@ bool RuntimeInfo::recoverInfo() {
 			case CONTAINER_EXISTS: {
 				try {
 					concrete_element = &(main_container->operator[](item_position));
+					container_status = CONCRETE_ELEMENT_EXISTS;
 					break;
 				}
 				catch (std::exception e) {
+					item_position = -1;
 					recover_succeed = false;
 				}
 			}
 			case SUBCONTAINER_EXISTS: {
 				try {
 					concrete_element = &(sub_container->operator[](item_position));
+					container_status = CONCRETE_ELEMENT_EXISTS;
 					break;
 				}
 				catch (std::exception e) {
+					item_position = -1;
 					recover_succeed = false;
 				}
 			}

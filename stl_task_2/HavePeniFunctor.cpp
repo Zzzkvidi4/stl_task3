@@ -19,7 +19,7 @@ void HavePeniFunctor::Initialize()
     std::cout << "Выбрать счета с задолжностью (Y/N) (N) (abort - отмена):" << std::endl;
     std::getline(std::cin, str);
     if (str == "abort") {
-        throw new std::exception("");
+        throw std::exception("");
     } else if ((str.length() != 0) && ((str[0] == 'Y') || (str[0] == 'y'))) {
         hasPeni = true;
     } else {

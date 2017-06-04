@@ -21,7 +21,7 @@ void ApartmentNumberFunctor::Initialize()
         std::cout << "Введите номер квартиры (0 - нет номера квартиры) (abort - отмена):" << std::endl;
         std::getline(std::cin, str);
         if (str == "abort") {
-            throw new std::exception("");
+            throw std::exception("");
         }
         try {
 			if (!checkInt(str)) {
@@ -30,7 +30,7 @@ void ApartmentNumberFunctor::Initialize()
             apartment_number = std::stoi(str);
             if (apartment_number < 0) {
                 apartment_number = -1;
-                throw new std::exception("Номер дома должен быть больше нуля или равен ему!");
+                throw std::exception("Номер дома должен быть больше нуля или равен ему!");
             }
             isCorrect = true;
         }
@@ -55,7 +55,7 @@ bool ApartmentNumberFunctor::Initialize(std::string value) {
 		apartment_number = std::stoi(value);
 		if (apartment_number < 0) {
 			apartment_number = -1;
-			throw new std::exception("Номер дома должен быть больше нуля или равен ему!");
+			throw std::exception("Номер дома должен быть больше нуля или равен ему!");
 		}
 		return true;
 	}
@@ -67,7 +67,7 @@ bool ApartmentNumberFunctor::Initialize(std::string value) {
 Bill ApartmentNumberFunctor::GetValue()
 {
     if (apartment_number == -1) {
-        throw new std::invalid_argument("Невозможно создать значение по неинициализированному функтору!");
+        throw std::invalid_argument("Невозможно создать значение по неинициализированному функтору!");
     }
     Bill* bill = new Bill();
     bill->setApartmentNumber(apartment_number);

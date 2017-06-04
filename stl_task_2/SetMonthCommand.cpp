@@ -16,7 +16,7 @@ void SetMonthCommand::Execute()
 		std::cout << "¬ведите новый мес€ц (пуста€ строка - отмена):" << std::endl;
 		std::getline(std::cin, str);
 		if (str == "") {
-			throw new std::exception("");
+			throw std::exception("");
 		}
 		try {
 			bill.getDate().setMonth(str);

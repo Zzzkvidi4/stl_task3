@@ -120,7 +120,7 @@ void Bill::setAddress(Address adr) {
 void Bill::setStreetName(std::string street_name)
 {
 	if (street_name == "") {
-        throw new std::exception("Улица не может быть пустой строкой.");
+        throw std::exception("Улица не может быть пустой строкой.");
 	}
     this->address.setStreetName(street_name);
 }
@@ -133,7 +133,7 @@ std::string Bill::getStreetName() {
 void Bill::setHouseNumber(std::string house_number)
 {
 	if (house_number == "0") {
-        throw new std::exception("Номер дома не должен быть равен 0.");
+        throw std::exception("Номер дома не должен быть равен 0.");
 	}
     this->address.setHouseNumber(house_number);
 }

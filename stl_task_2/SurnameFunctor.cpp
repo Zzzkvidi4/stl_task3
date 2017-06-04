@@ -20,7 +20,7 @@ void SurnameFunctor::Initialize()
         std::cout << "Введите фамилию (abort - отмена):" << std::endl;
         std::getline(std::cin, str);
         if (str == "abort") {
-            throw new std::exception("");
+            throw std::exception("");
         }
         if (str == "") {
             print_message("Фамилия не может быть пустой!");
@@ -46,7 +46,7 @@ bool SurnameFunctor::Initialize(std::string value) {
 Bill SurnameFunctor::GetValue()
 {
     if (surname == "") {
-        throw new std::invalid_argument("Невозможно создать значение по неинициализированному функтору!");
+        throw std::invalid_argument("Невозможно создать значение по неинициализированному функтору!");
     }
     Bill* bill = new Bill();
     bill->setSurname(surname);

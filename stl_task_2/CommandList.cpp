@@ -14,7 +14,7 @@ void CommandList::RegisterCommand(Command* command)
 void CommandList::ExecuteCommand(int index)
 {
     if ((commands.size() <= index) || (index < 0)) {
-        throw new std::out_of_range("Нарушение индексации списка меню.");
+        throw std::out_of_range("Нарушение индексации списка меню.");
     }
 	try {
 		system("cls");

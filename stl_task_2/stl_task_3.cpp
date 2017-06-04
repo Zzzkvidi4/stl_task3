@@ -113,6 +113,7 @@ int main()
     int choice = -1;
     while (runtime_info->getProgramStatus() != PROGRAM_EXIT) {
 		FillMenu(runtime_info, menu);
+		runtime_info->setCommandPosition(-1);
         menu->PrintTitles("Выберите один из пунктов меню:");
         getChoice(0, menu->Size(), choice);
 		if (choice != 0) {
