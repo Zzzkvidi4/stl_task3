@@ -8,6 +8,7 @@ RuntimeInfo* RuntimeInfo::instance = 0;
 std::ostream & operator<<(std::ostream & out, RuntimeInfo & info) {
 	out << info.getFileName() << std::endl;
 	out << std::to_string(info.getUserStatus()) << std::endl;
+	out << std::to_string(info.getCommandPosition()) << std::endl;
 	out << std::to_string(info.getItemPosition()) << std::endl;
 	out << info.getFactoryName() << std::endl;
 	out << info.getQueryValue() << std::endl;
@@ -36,6 +37,11 @@ std::istream& operator>>(std::istream& in, RuntimeInfo& info) {
 
 	std::getline(in, str);
 	if (checkInt(str)) {
+		info.setCommandPosition(std::stoi(str));
+	}
+
+	std::getline(in, str);
+	if (checkInt(str)) {
 		info.setItemPosition(std::stoi(str));
 	}
 
@@ -44,6 +50,15 @@ std::istream& operator>>(std::istream& in, RuntimeInfo& info) {
 
 	std::getline(in, str);
 	info.setQueryValue(str);
+	return in;
+}
+
+void RuntimeInfo::setCommandPosition(int command_position) {
+	this->command_position = command_position;
+}
+
+int RuntimeInfo::getCommandPosition() {
+	return command_position;
 }
 
 bool RuntimeInfo::recoverInfo() {
@@ -92,6 +107,7 @@ bool RuntimeInfo::recoverInfo() {
 			}
 		}
 	}
+	return recover_succeed;
 }
 
 void RuntimeInfo::saveInfo() {

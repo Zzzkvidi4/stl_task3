@@ -97,11 +97,27 @@ int main()
 	TemplateContainer<Bill>* cont = new TemplateContainer<Bill>();
     CommandList* menu = new CommandList();
 	RuntimeInfo* runtime_info = RuntimeInfo::getInstance();
+	if (!runtime_info->recoverInfo()) {
+		print_message("Внимание, восстановление не было завершено успешно!");
+	} else {
+		if (runtime_info->getCommandPosition() != -1) {
+			FillMenu(runtime_info, menu);
+			try {
+				menu->ExecuteCommand(runtime_info->getCommandPosition());
+			}
+			catch (std::exception e) {
+				print_message("Запуск последней команды невозможен. Возможно, файл с информацией был поврежден или последний рабочий файл изменили вручную.");
+			}
+		}
+	}
     int choice = -1;
     while (runtime_info->getProgramStatus() != PROGRAM_EXIT) {
 		FillMenu(runtime_info, menu);
         menu->PrintTitles("Выберите один из пунктов меню:");
         getChoice(0, menu->Size(), choice);
+		if (choice != 0) {
+			runtime_info->setCommandPosition(choice);
+		}
         menu->ExecuteCommand(choice);
     }
 	return 0;

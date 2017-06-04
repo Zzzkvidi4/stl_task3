@@ -10,7 +10,8 @@
 #define ROLE_USER 0
 #define ROLE_MANAGER 1
 #define PROGRAM_RUNNING 0
-#define PROGRAM_EXIT 1
+#define PROGRAM_LAUNCHING 1
+#define PROGRAM_EXIT 2
 
 class RuntimeInfo {
 private:
@@ -27,6 +28,7 @@ private:
 	std::string factory_name = ""; //!
 	std::string query_value = ""; //!
 	int item_position = -1; //!
+	int command_position = -1;
 
 
 public:
@@ -79,6 +81,10 @@ public:
 	int getItemPosition() {
 		return item_position;
 	}
+
+	void setCommandPosition(int command_position);
+
+	int getCommandPosition();
 
 	TemplateContainer<Bill>* getMainContainer() {
 		return main_container;
