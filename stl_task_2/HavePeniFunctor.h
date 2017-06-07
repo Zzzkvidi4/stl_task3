@@ -2,6 +2,7 @@
 class HavePeniFunctor: public BaseFunctor<Bill>
 {
 private:
+	bool isInitialized = false;
     bool hasPeni = false;
 public:
     HavePeniFunctor();

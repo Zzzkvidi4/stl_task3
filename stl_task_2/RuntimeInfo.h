@@ -28,7 +28,7 @@ private:
 	std::string factory_name = ""; //!
 	std::string query_value = ""; //!
 	int item_position = -1; //!
-	int command_position = -1;
+	int command_position = -1; //!
 
 
 public:

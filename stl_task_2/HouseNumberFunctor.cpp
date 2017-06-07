@@ -42,9 +42,13 @@ void HouseNumberFunctor::Initialize()
             print_message(e.what());
         }
     }
+	isInitialized = true;
 }
 
 std::string HouseNumberFunctor::GetStringValue() {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
 	return std::to_string(house_number);
 }
 
@@ -58,6 +62,7 @@ bool HouseNumberFunctor::Initialize(std::string value) {
 			house_number = -1;
 			throw std::exception("Номер дома должен быть больше нуля!");
 		}
+		isInitialized = true;
 		return true;
 	}
 	catch (std::exception e) {

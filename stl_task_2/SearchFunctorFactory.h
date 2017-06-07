@@ -27,6 +27,11 @@ public:
 		return NULL;
     }
 
-	~SearchFunctorFactory() {}
+	~SearchFunctorFactory() {
+		for (std::map<std::string, AbstractFunctorCreator*>::iterator iter = FactoryMap.begin(); iter != FactoryMap.end(); ++iter) {
+			delete iter->second;
+		}
+		FactoryMap.clear();
+	}
 };
 

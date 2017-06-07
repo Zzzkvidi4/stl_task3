@@ -10,6 +10,9 @@ DateFunctor::DateFunctor()
 
 bool DateFunctor::operator()(Bill bill)
 {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
     return bill.getDate() == date;
 }
 
@@ -69,6 +72,7 @@ void DateFunctor::Initialize()
 bool DateFunctor::Initialize(std::string value) {
 	try {
 		Date::StrToDate(value, date);
+		isInitialized = true;
 		return true;
 	}
 	catch (std::exception e) {
@@ -77,11 +81,17 @@ bool DateFunctor::Initialize(std::string value) {
 }
 
 std::string DateFunctor::GetStringValue() {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
 	return date.to_string();
 }
 
 Bill DateFunctor::GetValue()
 {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
     Bill* bill = new Bill();
     bill->setDate(date);
     return *bill;

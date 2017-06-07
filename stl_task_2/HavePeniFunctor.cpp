@@ -25,19 +25,27 @@ void HavePeniFunctor::Initialize()
     } else {
         hasPeni = false;
     }
+	isInitialized = true;
 }
 
 std::string HavePeniFunctor::GetStringValue() {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
 	return std::to_string(hasPeni);
 }
 
 bool HavePeniFunctor::Initialize(std::string value) {
-	return false;
+	hasPeni = value == "1";
+	isInitialized = true;
 }
 
 
 Bill HavePeniFunctor::GetValue()
 {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
     Bill* bill = new Bill();
     bill->setHasPeni(hasPeni);
     return *bill;

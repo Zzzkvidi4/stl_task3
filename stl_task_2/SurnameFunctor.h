@@ -5,6 +5,7 @@
 class SurnameFunctor : public BaseFunctor<Bill>
 {
 private:
+	bool isInitialized = false;
     std::string surname;
 public:
     SurnameFunctor();

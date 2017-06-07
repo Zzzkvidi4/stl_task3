@@ -3,6 +3,7 @@ class HouseNumberFunctor: public BaseFunctor<Bill>
 {
 private:
     int house_number;
+	bool isInitialized = false;
 public:
     HouseNumberFunctor();
     bool operator()(Bill bill);

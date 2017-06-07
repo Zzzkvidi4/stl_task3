@@ -9,6 +9,9 @@ SurnameFunctor::SurnameFunctor()
 
 bool SurnameFunctor::operator()(Bill bill)
 {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
     return bill.getSurname() == surname;
 }
 
@@ -29,13 +32,20 @@ void SurnameFunctor::Initialize()
             isCorrect = true;
         }
     }
+	isInitialized = true;
 }
 
 std::string SurnameFunctor::GetStringValue() {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
 	return surname;
 }
 
 bool SurnameFunctor::Initialize(std::string value) {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
 	if (value != "") {
 		surname = value;
 		return true;
@@ -45,6 +55,9 @@ bool SurnameFunctor::Initialize(std::string value) {
 
 Bill SurnameFunctor::GetValue()
 {
+	if (!isInitialized) {
+		throw std::exception("Невозможно использовать неинициализированный функтор.");
+	}
     if (surname == "") {
         throw std::invalid_argument("Невозможно создать значение по неинициализированному функтору!");
     }
