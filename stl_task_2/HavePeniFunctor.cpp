@@ -38,6 +38,7 @@ std::string HavePeniFunctor::GetStringValue() {
 bool HavePeniFunctor::Initialize(std::string value) {
 	hasPeni = value == "1";
 	isInitialized = true;
+	return true;
 }
 
 
